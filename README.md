@@ -14,16 +14,13 @@ I will ideally also include a button to search for the local markets upon the lo
 
 
 Steps to take:
-Find if the recipe puppy API can handle the recipe, ingredients, photos and video. I got other back up API’s in case it can do only one of them.
-As a second backup I can hardcode the photos and videos to each selection
-I’ll create my own search objects for each dish with their relevant arrays, this will force me to only have 12 dishes to start with, including 4 appetizers and  5 main dishes and 3 deserts. If time allows I’ll increase the menu.
+Find if the edamam API can hand out the recipe and nutritional information. I looked at other API’s but this one seems to be the only one to be free for the data I need.
+I’ll create my own search parsers for each dish , this will force me to only have 10 dishes to start with, including 3 appetizers and  4 main dishes and 3 deserts. If time allows I’ll increase the menu.
 The site must be built using most of the technologies learned, such as vanilla JS, jQuery, CSS, HTML and AJAX to create the page.
 
 
 
 
-
-Wireframing:
 The page has 2 stages, a search presentation and a recipe presentation.
 Here are both of this:
 Stage one:
