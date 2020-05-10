@@ -1,13 +1,18 @@
 
-// how to use grabdata for only the one selection
+// global variables
 
 let storeResponse, $searchQ, theChosenOne;
+
+// Jquery variables (for HTML element selection)
 let $selectApps = $('#appetizers');
 let $selectEntree = $('#entree');
 let $selectDessert = $('#desserts');
 let $selectorEl = $(".inputs");
 let $ingEl = $(".ingredients");
 let $nutriEl = $(".nutrition");
+
+/*******main menu */
+function neutralize() {
 $selectApps.change(function() {
    $searchQ = $selectApps.val();
    console.log($searchQ);
@@ -23,6 +28,17 @@ $searchQ = $selectDessert.change(function() {
     $searchQ = $selectDessert.val();
     $grabData();
 });
+
+}
+let $search = $('#search');
+$search.on('click', function() {$searchQ = $('#test').val(); $grabData();
+console.log("this is what I am searching: " + $searchQ);
+} );
+
+
+
+/*******Functions! ************/
+
 
 function $grabData() {
     console.log("$gragData starting")
@@ -58,20 +74,23 @@ console.log(response);
     }
    
     function ingredients(){
+        if(theChosenOne.food !== undefined || theChosenOne.food.foodContentsLabel !== undefined){
+            alert("It is match!! Please make not of " + $searchQ + " BEFORE CLOSING THIS ALERT, then refresh browser and try a new one!");
         ingList = theChosenOne.food.foodContentsLabel.split(";");
         ingList.forEach(element => {
         
-        $ingEl.append(`<li>${element}</li>`);
+        $ingEl.append(`<li>${element}</li>`);})
+    }
+        else {alert("not a match");}
             
-     });
-     }
+     };
+     
 
      function nutrition() {
         nutriList = theChosenOne.food.nutrients;
         console.log(nutriList);
         for (let [key, value] of Object.entries(nutriList)) {
-            $nutriEl.append(`<h5>${key}</h5`);
-            $nutriEl.append(`<h5 class= "result">${value}</h5`);
+            $nutriEl.append(`<h5>${key}</h5> <h5 class= "result">${value}</h5>`);
           }
           
 
