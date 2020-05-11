@@ -1,3 +1,41 @@
+//Setting up DOM
+
+let $stage1 = $(".stage1")
+$stage1Content = 
+`<h1>Peruvian Food Nutrition</h1>
+
+<form class="inputs">
+    <h2>APPETIZERS</h2>
+    <select id= "appetizers">
+    <option >Please select an appetizer</option>   
+    <option value = "Peruvian Ceviche">Ceviche</option>
+    <option value = "Papas a la Huancaina">Papa a la huancaina</option>
+    <option value = "empanadas">Empanadas</option>
+    <option value = "Pork Tamales">Tamales</option>
+    </select>
+
+    <h2>ENTREE</h2>
+    <select id= "entree">
+    <option >Please select a main dish</option> 
+    <option value = "Lomo Saltado">Lomo Saltado</option>
+    <option value = "Aji de Gallina">Aji de Gallina</option>
+    <option value = "Aguadito de Pollo">Aguadito de Pollo</option>
+    <option value = "Peruvian Roasted Chicken">Pollo a la brasa</option>
+    <option value = "Albondigas">Albondigas</option>
+    <option value = "Pescado Sudado">Pescado Sudado</option>
+    <option value = "ragu bolognese">Fideos Rojos</option>
+    </select>
+
+    <h2>DESSERTS</h2>
+    <select id= "desserts">
+    <option >Please select a dessert</option> 
+    <option value = "Suspiro Limeno">Suspiro a la limeña</option>
+    <option value = "Peruvian Alfajores">Alfajores</option>
+    <option value = "Arroz con leche">Arroz con leche</option>
+    </select>
+</form>` ;
+
+createStage();
 
 // global variables
 
@@ -11,37 +49,43 @@ let $selectorEl = $(".inputs");
 let $ingEl = $(".ingredients");
 let $nutriEl = $(".nutrition");
 
+
 /*******main menu */
-function neutralize() {
+
 $selectApps.change(function() {
+   removeStage();
    $searchQ = $selectApps.val();
-   console.log($searchQ);
    $grabData ();
 }) 
 
 $searchQ = $selectEntree.change(function() {
+    removeStage();
     $searchQ = $selectEntree.val();
     $grabData();
 }) 
 
 $searchQ = $selectDessert.change(function() {
+    removeStage();
     $searchQ = $selectDessert.val();
     $grabData();
 });
 
-}
-let $search = $('#search');
-$search.on('click', function() {$searchQ = $('#test').val(); $grabData();
-console.log("this is what I am searching: " + $searchQ);
-} );
 
 
 
 /*******Functions! ************/
+function createStage(){
+    $stage1.append($stage1Content);
+}
 
+function removeStage(){
+    $stage1.empty();
+    $ingEl.empty();
+    $nutriEl.empty();
+}
 
 function $grabData() {
-    console.log("$gragData starting")
+    console.log("$grabData starting")
 const settings = {
 	"async": true,
 	"crossDomain": true,
@@ -54,7 +98,6 @@ const settings = {
 }
 
  $.ajax(settings).done(function (response) {
-console.log(response);
     storeResponse = response;
     console.log(storeResponse);
     let filteredRecipe = storeResponse;
@@ -71,31 +114,53 @@ console.log(response);
          return dish.food.label.includes(filter);
         });
     theChosenOne = filteredRecipe[0];
+    $nutriEl.append(`<button id='reset'>Search Another Dish</button>`)
+}
+    console.log(theChosenOne)
+
     }
+
    
     function ingredients(){
-        if(theChosenOne.food !== undefined || theChosenOne.food.foodContentsLabel !== undefined){
-            alert("It is match!! Please make not of " + $searchQ + " BEFORE CLOSING THIS ALERT, then refresh browser and try a new one!");
+        $ingEl.append(`<h3>Ingredients:</h3>`);
         ingList = theChosenOne.food.foodContentsLabel.split(";");
-        ingList.forEach(element => {
-        
+        ingList.forEach(element => {    
         $ingEl.append(`<li>${element}</li>`);})
+        
     }
-        else {alert("not a match");}
-            
-     };
-     
+        
 
      function nutrition() {
         nutriList = theChosenOne.food.nutrients;
         console.log(nutriList);
+        $nutriEl.append(`<h3>Nutrition: </h3>`);
+        changeKeys();
         for (let [key, value] of Object.entries(nutriList)) {
             $nutriEl.append(`<h5>${key}</h5> <h5 class= "result">${value}</h5>`);
           }
-          
 
-     }
+        $resetEl=$('#reset');
+        $resetEl.on('click', reset);
+  function reset() {
+    console.log("reset was clicked!");
+        removeStage();
+        createStage();
+    }
+  
+      
+    function changeKeys() {
+        console.log(nutriList)
+        nutriList.Kilo_Calories = nutriList.ENERC_KCAL;
+        delete nutriList.ENERC_KCAL;
+        nutriList.Protein = nutriList.PROCNT;
+        delete nutriList.PROCNT;
+        nutriList.Fat = nutriList.FAT;
+        delete nutriList.FAT;
+        nutriList.Carbohydrates = nutriList.CHOCDF;
+        delete nutriList.CHOCDF;
+        nutriList.Fiber = nutriList.FIBTG;
+        delete nutriList.FIBTG;
+        }
+    
 
-}
-
-
+};
