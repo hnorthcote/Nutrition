@@ -79,9 +79,7 @@ function createStage(){
 }
 
 function removeStage(){
-    $stage1.empty();
-    $ingEl.empty();
-    $nutriEl.empty();
+ location.reload(true);
 }
 
 function $grabData() {
@@ -97,7 +95,7 @@ const settings = {
 	}
 }
 
- $.ajax(settings).done(function (response) {
+ $.ajax(settings).done(function (response){
     storeResponse = response;
     console.log(storeResponse);
     let filteredRecipe = storeResponse;
@@ -122,6 +120,7 @@ const settings = {
 
    
     function ingredients(){
+        console.log("processing ingredients");
         $ingEl.append(`<h3>Ingredients:</h3>`);
         ingList = theChosenOne.food.foodContentsLabel.split(";");
         ingList.forEach(element => {    
