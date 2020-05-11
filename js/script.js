@@ -79,7 +79,7 @@ function createStage(){
 }
 
 function removeStage(){
- location.reload(true);
+ $stage1.empty();
 }
 
 function $grabData() {
@@ -141,9 +141,7 @@ const settings = {
         $resetEl=$('#reset');
         $resetEl.on('click', reset);
   function reset() {
-    console.log("reset was clicked!");
-        removeStage();
-        createStage();
+    location.reload(true);
     }
   
       
