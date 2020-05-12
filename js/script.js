@@ -3,8 +3,9 @@
 let $stage1 = $(".stage1")
 $stage1Content = 
 `<h1>Peruvian Food Nutrition</h1>
-
+<div class="background">
 <form class="inputs">
+<div class = "flexContainer">
     <h2>APPETIZERS</h2>
     <select id= "appetizers">
     <option >Please select an appetizer</option>   
@@ -13,8 +14,9 @@ $stage1Content =
     <option value = "empanadas">Empanadas</option>
     <option value = "Pork Tamales">Tamales</option>
     </select>
-
-    <h2>ENTREE</h2>
+</div>
+<div class = "flexContainer">
+    <h2 class="middle">ENTREE</h2>
     <select id= "entree">
     <option >Please select a main dish</option> 
     <option value = "Lomo Saltado">Lomo Saltado</option>
@@ -25,7 +27,8 @@ $stage1Content =
     <option value = "Pescado Sudado">Pescado Sudado</option>
     <option value = "ragu bolognese">Fideos Rojos</option>
     </select>
-
+</div>
+<div class = "flexContainer">
     <h2>DESSERTS</h2>
     <select id= "desserts">
     <option >Please select a dessert</option> 
@@ -33,13 +36,15 @@ $stage1Content =
     <option value = "Peruvian Alfajores">Alfajores</option>
     <option value = "Arroz con leche">Arroz con leche</option>
     </select>
-</form>` ;
+</div>    
+</form>
+</div>` ;
 
 createStage();
 
 // global variables
 
-let storeResponse, $searchQ, theChosenOne;
+let storeResponse, $searchQ, theChosenOne, $selectedDish;
 
 // Jquery variables (for HTML element selection)
 let $selectApps = $('#appetizers');
@@ -48,13 +53,15 @@ let $selectDessert = $('#desserts');
 let $selectorEl = $(".inputs");
 let $ingEl = $(".ingredients");
 let $nutriEl = $(".nutrition");
-
+let $mainEl = $("main");
 
 /*******main menu */
 
 $selectApps.change(function() {
    removeStage();
    $searchQ = $selectApps.val();
+   $selectedDish = $( "#appetizers option:selected" ).text();
+   console.log($selectedDish);
    $grabData ();
 }) 
 
@@ -114,14 +121,14 @@ const settings = {
     theChosenOne = filteredRecipe[0];
     $nutriEl.append(`<button id='reset'>Search Another Dish</button>`)
 }
-    console.log(theChosenOne)
+    
 
     }
 
    
     function ingredients(){
         console.log("processing ingredients");
-        $ingEl.append(`<h3>Ingredients:</h3>`);
+        $ingEl.append(`<h3 class="box shadow1" >Ingredients:</h3>`);
         ingList = theChosenOne.food.foodContentsLabel.split(";");
         ingList.forEach(element => {    
         $ingEl.append(`<li>${element}</li>`);})
@@ -132,7 +139,7 @@ const settings = {
      function nutrition() {
         nutriList = theChosenOne.food.nutrients;
         console.log(nutriList);
-        $nutriEl.append(`<h3>Nutrition: </h3>`);
+        $nutriEl.append(`<h3 class="box shadow1">Nutrition: </h3>`);
         changeKeys();
         for (let [key, value] of Object.entries(nutriList)) {
             $nutriEl.append(`<h5>${key}</h5> <h5 class= "result">${value}</h5>`);

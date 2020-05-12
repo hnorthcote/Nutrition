@@ -1,0 +1,99 @@
+*{
+   box-sizing: border-box;
+}
+
+.stage1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+h1 {
+    color: red;
+    font-size: 40px;
+    font-weight: 700;
+    border-style: solid;
+    border-color: black;
+    text-align:center;
+    justify-content: center;
+}
+ h2 {
+    color: red;
+    background-color: white;
+    font-size: 25px;
+    font-weight: 500;
+    border-style: solid;
+    border-color: black;
+    text-align:center;
+    position:relative;
+ }
+ body {
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .flexContainer {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+ }
+ .background {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-image: url(../images/cebiche_beach.jpg);
+    opacity: .8;
+    float: left;
+    background-size: cover;
+}
+
+/* .stage2 {
+    display: flex;
+    background-color: red white red;
+    opacity: .6;
+    height: 100vh;
+    margin: 0;
+    grid-template-rows: 3rem auto;
+    background-size: cover;
+} */
+.middle {
+    color: white;
+    background-color: red;
+}
+.inputs {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+#appetizers {
+
+    background-color: white !important;
+    color: red
+
+}
+#entree {
+
+    background-color:red;
+    color: white
+
+}
+#desserts {
+
+    background-color: white;
+    color: red;
+
+}
+footer {
+  display: flex;
+}
+.ingredients {
+
+
+}
+
+.nutrition {
+
+
+}
