@@ -8,15 +8,17 @@
     flex-wrap: wrap;
 }
 h1 {
-    color: red;
+    font-family: 'Exo', sans-serif;
+    color: black;
     font-size: 40px;
     font-weight: 700;
     border-style: solid;
-    border-color: black;
+    border-color: red;
     text-align:center;
     justify-content: center;
 }
  h2 {
+    font-family: 'Permanent Marker', cursive;
     color: red;
     background-color: white;
     font-size: 25px;
@@ -26,10 +28,15 @@ h1 {
     text-align:center;
     position:relative;
  }
+
+ }
  body {
      min-height: 100vh;
      display: flex;
      flex-direction: column;
+ }
+ h3 {
+     text-align: left;
  }
 
  .flexContainer {
@@ -48,15 +55,6 @@ h1 {
     background-size: cover;
 }
 
-/* .stage2 {
-    display: flex;
-    background-color: red white red;
-    opacity: .6;
-    height: 100vh;
-    margin: 0;
-    grid-template-rows: 3rem auto;
-    background-size: cover;
-} */
 .middle {
     color: white;
     background-color: red;
@@ -69,7 +67,7 @@ h1 {
 }
 #appetizers {
 
-    background-color: white !important;
+    background-color: white;
     color: red
 
 }
@@ -86,14 +84,53 @@ h1 {
 
 }
 footer {
-  display: flex;
+    justify: center;
+  text-align: center;
+  background: linear-gradient(#dd0000, #ffffff);
 }
-.ingredients {
 
+
+
+.ingrStyle {
+    display: flex;
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 38%;
+    margin-left: 38%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    background-color: white;
+    color:black;
+    border-style: solid;
+    border-color: black;
+    border-width: 50%;
 
 }
 
 .nutrition {
-
+    display: flex;
+    flex-direction: column;
+    flex: 50%;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 38%;
+    margin-left: 38%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    background-color: white;
+    color:black;
+    border-style: solid;
+    border-color: black;
+    border-width: 50%;
 
 }
+.stage2 {
+    background: linear-gradient(110deg, #dd0000 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #ffffff 66%, #dd0000 66%);
+}
+

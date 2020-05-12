@@ -1,5 +1,5 @@
 //Setting up DOM
-
+const $yearEl = $('#year');
 let $stage1 = $(".stage1")
 $stage1Content = 
 `<h1>Peruvian Food Nutrition</h1>
@@ -16,7 +16,7 @@ $stage1Content =
     </select>
 </div>
 <div class = "flexContainer">
-    <h2 class="middle">ENTREE</h2>
+    <h2 class="middle">ENTREES</h2>
     <select id= "entree">
     <option >Please select a main dish</option> 
     <option value = "Lomo Saltado">Lomo Saltado</option>
@@ -44,7 +44,7 @@ createStage();
 
 // global variables
 
-let storeResponse, $searchQ, theChosenOne, $selectedDish;
+let storeResponse, $searchQ, theChosenOne, selectedDish;
 
 // Jquery variables (for HTML element selection)
 let $selectApps = $('#appetizers');
@@ -52,16 +52,16 @@ let $selectEntree = $('#entree');
 let $selectDessert = $('#desserts');
 let $selectorEl = $(".inputs");
 let $ingEl = $(".ingredients");
-let $nutriEl = $(".nutrition");
 let $mainEl = $("main");
+let $nutriSet = $('#createClassNutr');
+let $ingrSet = $('#createClassIngr');
+
 
 /*******main menu */
 
 $selectApps.change(function() {
    removeStage();
    $searchQ = $selectApps.val();
-   $selectedDish = $( "#appetizers option:selected" ).text();
-   console.log($selectedDish);
    $grabData ();
 }) 
 
@@ -83,10 +83,13 @@ $searchQ = $selectDessert.change(function() {
 /*******Functions! ************/
 function createStage(){
     $stage1.append($stage1Content);
+    $yearEl.html(new Date().getFullYear());
 }
 
 function removeStage(){
  $stage1.empty();
+$nutriSet.addClass("nutrition")
+$ingrSet.addClass("ingrStyle")
 }
 
 function $grabData() {
@@ -104,7 +107,6 @@ const settings = {
 
  $.ajax(settings).done(function (response){
     storeResponse = response;
-    console.log(storeResponse);
     let filteredRecipe = storeResponse;
     parser();
     ingredients();
@@ -119,7 +121,9 @@ const settings = {
          return dish.food.label.includes(filter);
         });
     theChosenOne = filteredRecipe[0];
-    $nutriEl.append(`<button id='reset'>Search Another Dish</button>`)
+    $stage1.append(`<div class="resetButton">
+     <button id='reset'>Search Another Dish</button>
+     </div>`)
 }
     
 
@@ -128,18 +132,20 @@ const settings = {
    
     function ingredients(){
         console.log("processing ingredients");
-        $ingEl.append(`<h3 class="box shadow1" >Ingredients:</h3>`);
+        $ingEl.append(`<h3>Ingredients:</h3>`);
         ingList = theChosenOne.food.foodContentsLabel.split(";");
         ingList.forEach(element => {    
         $ingEl.append(`<li>${element}</li>`);})
-        
+        $ingEl.append(`</div>`);
+        $("body").first().addClass("stage2");
     }
         
 
      function nutrition() {
+        let $nutriEl = $(".nutrition");
         nutriList = theChosenOne.food.nutrients;
         console.log(nutriList);
-        $nutriEl.append(`<h3 class="box shadow1">Nutrition: </h3>`);
+        $nutriEl.append(`<h3>Nutrition: </h3>`);
         changeKeys();
         for (let [key, value] of Object.entries(nutriList)) {
             $nutriEl.append(`<h5>${key}</h5> <h5 class= "result">${value}</h5>`);
@@ -154,7 +160,7 @@ const settings = {
       
     function changeKeys() {
         console.log(nutriList)
-        nutriList.Kilo_Calories = nutriList.ENERC_KCAL;
+        nutriList.Calories = nutriList.ENERC_KCAL;
         delete nutriList.ENERC_KCAL;
         nutriList.Protein = nutriList.PROCNT;
         delete nutriList.PROCNT;
