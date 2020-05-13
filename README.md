@@ -1,4 +1,4 @@
-Main Idea:
+##Main Idea:
 
 The main idea is to bring up 2 of my unique characteristics, latin culture and cooking experience.
 
@@ -13,26 +13,29 @@ I will ideally also include a button to search for the local markets upon the lo
 
 
 
-Steps to take:
+##Steps to take:
 Find if the edamam API can hand out the recipe and nutritional information. I looked at other API’s but this one seems to be the only one to be free for the data I need.
 I’ll create my own search parsers for each dish , this will force me to only have 10 dishes to start with, including 3 appetizers and  4 main dishes and 3 deserts. If time allows I’ll increase the menu.
 The site must be built using most of the technologies learned, such as vanilla JS, jQuery, CSS, HTML and AJAX to create the page.
 
 
 
-
+##Display:
 The page has 2 stages, a search presentation and a recipe presentation.
 Here are both of this:
-Stage one:
+
+
+###Stage one:
 https://www.lucidchart.com/publicSegments/view/c2cffc41-340e-4a7e-a1e7-c48043151ef8/image.png
 
 
-Stage two:
+###Stage two:
 
 https://www.lucidchart.com/publicSegments/view/47fbcf81-4714-474e-98af-8c5d0351be84/image.png
 
 
-Pseudocode:
+##Pseudocode:
+
 -Create constants for search arrays (drop down on HTML) for the food items
 -Create constant for background image
 -Create variables for  ingredients, recipe, video and photo elements for HTML
@@ -41,4 +44,10 @@ Pseudocode:
 -create function for event listener when clicked concatenate the search command for the API
 -if needed create function to tie the hardcoded links to the photo and video elements
 -create reset button function
+
+##Next steps:
+- Look for an API that can show the full recipe and video
+- Add recipe and video to the main page
+- Smoth boxes, create shadows, transitions between page stages.
+
 
