@@ -23,6 +23,8 @@ The site must be built using most of the technologies learned, such as vanilla J
 ##Display:
 The page has 2 stages, a search presentation and a recipe presentation.
 Here are both of this:
+
+
 ###Stage one:
 https://www.lucidchart.com/publicSegments/view/c2cffc41-340e-4a7e-a1e7-c48043151ef8/image.png
 
