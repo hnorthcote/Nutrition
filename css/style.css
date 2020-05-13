@@ -87,6 +87,7 @@ footer {
     justify: center;
   text-align: center;
   background: linear-gradient(#dd0000, #ffffff);
+  font-size: 25px;
 }
 
 
@@ -133,4 +134,9 @@ footer {
 .stage2 {
     background: linear-gradient(110deg, #dd0000 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #ffffff 66%, #dd0000 66%);
 }
+ion-icon {
+    font-size: 50px;
+    float: right;
+    color: blue;
 
+  }
